@@ -3,6 +3,9 @@ package com.hyyperb.sshremote;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -17,6 +20,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.hyyperb.sshremote.SSHHandler;
+import com.hyyperb.sshremote.ui.panel.Panel;
 
 import com.hyyperb.sshremote.databinding.ActivityMainBinding;
 
@@ -31,19 +35,10 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        SSHHostDetails sshhost = new SSHHostDetails();
-        sshhost.host = "";
-        sshhost.username = "";
-        sshhost.password = "";
-
-        String command = "uname";
-
-        SSHHandler sshHandler = new SSHHandler(sshhost);
 
         setSupportActionBar(binding.appBarMain.toolbar);
         if (binding.appBarMain.fab != null) {
-            binding.appBarMain.fab.setOnClickListener(view -> Snackbar.make(view, sshHandler.runCommand(command), Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).setAnchorView(R.id.fab).show());
+            binding.appBarMain.fab.setOnClickListener(v -> {});
         }
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_content_main);
         assert navHostFragment != null;
@@ -68,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
             NavigationUI.setupWithNavController(bottomNavigationView, navController);
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
